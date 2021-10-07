@@ -182,7 +182,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+    m_NormalColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
     m_HighlightedColor: {r: 0.15419191, g: 0.7264151, b: 0.21637526, a: 1}
     m_PressedColor: {r: 0.14017446, g: 0.5854932, b: 0.6603774, a: 1}
     m_SelectedColor: {r: 0.15752938, g: 0.5660378, b: 0.16017252, a: 1}
