@@ -5,11 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public GameManager manager;
+    public GameObject explosion = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             manager.score++;
+            Instantiate(explosion, transform.position, transform.rotation);
             DestroyEnemy(collision);
         }
     }
@@ -30,7 +32,7 @@ public class Bullet : MonoBehaviour
     void DestroyEnemy(Collision2D collision)
     {
         Destroy(collision.gameObject);
-        Destroy(gameObject);
+        Destroy(gameObject, 1);
     }
 
     private void OnBecameInvisible()
