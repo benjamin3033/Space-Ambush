@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject planet = null;
     public GameObject bullet = null;
+    public GameManager manager;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +26,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject clone;
-            Rigidbody2D cloneRb;
-            clone = Instantiate(bullet, gameObject.transform.position, gameObject.transform.rotation);
-            cloneRb = clone.GetComponent<Rigidbody2D>();
+            
+            GameObject clone = Instantiate(bullet, gameObject.transform.position, gameObject.transform.rotation);
+            clone.GetComponent<Bullet>().manager = manager;
+            Rigidbody2D cloneRb = clone.GetComponent<Rigidbody2D>();
             cloneRb.velocity = transform.TransformDirection(Vector2.up * 10);
         }
     } 
