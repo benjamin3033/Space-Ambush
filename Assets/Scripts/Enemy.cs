@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameManager manager;
     public GameObject planet;
+    public GameObject explosion = null;
+
     public float speed = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
         planet = GameObject.Find("Planet");
-        GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+        manager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveTowards(planet.transform.position);
-        RotateTowards(planet.transform.position);
+        if (planet == null)
+        {
+
+        }
+        else
+        {
+            MoveTowards(planet.transform.position);
+            RotateTowards(planet.transform.position);
+        }
+        
     }
 
     void MoveTowards(Vector2 target)
@@ -33,5 +44,15 @@ public class Enemy : MonoBehaviour
 
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Planet")
+        {
+            manager.health--;
+            Instantiate(explosion, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }
