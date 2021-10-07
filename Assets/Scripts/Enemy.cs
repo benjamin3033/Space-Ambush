@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         planet = GameObject.Find("Planet");
+        GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
     }
 
     // Update is called once per frame
@@ -27,11 +28,6 @@ public class Enemy : MonoBehaviour
 
     void RotateTowards(Vector2 target)
     {
-        //Vector2 direction = (target - (Vector2)transform.position).normalized;
-        //var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //var offset = 0f;
-        //transform.rotation = Quaternion.Euler(Vector3.back * (angle + offset));
-
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         diff.Normalize();
 
