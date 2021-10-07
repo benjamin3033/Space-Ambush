@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +22,15 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            manager.score++;
+            DestroyEnemy(collision);
         }
+    }
+
+    void DestroyEnemy(Collision2D collision)
+    {
+        Destroy(collision.gameObject);
+        Destroy(gameObject);
     }
 
     private void OnBecameInvisible()
